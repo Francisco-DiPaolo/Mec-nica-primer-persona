@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 599316070345738524}
   - component: {fileID: 732119509673209650}
   - component: {fileID: 3094782171204243287}
+  - component: {fileID: 7604524718934391803}
   m_Layer: 0
   m_Name: Liana
-  m_TagString: Untagged
+  m_TagString: Liana
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 27c7b2a80819aa444ab2d9fb5f11db1b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,3 +97,15 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &7604524718934391803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4670890114789387874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b92513225dec54341ada049858a42fd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

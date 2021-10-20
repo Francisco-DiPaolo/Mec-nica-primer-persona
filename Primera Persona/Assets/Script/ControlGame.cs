@@ -23,7 +23,7 @@ public class ControlGame : MonoBehaviour
 
     void ComenzarJuego()
     {
-        Player.transform.position = new Vector3(0f, 0f, 0f);
+        //Player.transform.position = new Vector3(0f, 0.5f, 0f);
 
         foreach (GameObject item in listaEnemigos)
         {
