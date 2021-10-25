@@ -1,49 +1,80 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ControlGame : MonoBehaviour
 {
-    public GameObject Player;
-    public GameObject Liana;
-    private List<GameObject> listaEnemigos;
-    float tiempoRestante;
+    public TextMeshProUGUI TextLiana;
+    public GameObject winTextObject;
+    public TextMeshProUGUI TextCronometro;
+    public float totalTime = 30f;
+    public GameObject TextLose;
+    private int count;
+    private bool flag = true;
+    
     void Start()
     {
-        ComenzarJuego();
+        count = 0;
+        SetCountText();
+        winTextObject.SetActive(false);
+        TextCronometro.text = "";
+        TextLose.SetActive(false);
     }
 
     void Update()
     {
-        if (tiempoRestante == 0)
-        {
-            ComenzarJuego();
-        }
+        totalTime -= Time.deltaTime;
+
+        UpdateLevelTimer(totalTime);
+
+        SetLoseText();
     }
 
-    void ComenzarJuego()
+    public void UpdateLevelTimer(float totalSeconds)
     {
-        //Player.transform.position = new Vector3(0f, 0.5f, 0f);
-
-        foreach (GameObject item in listaEnemigos)
+        if (flag)
         {
-            Destroy(item);
-        }
+            int minutes = Mathf.FloorToInt(totalSeconds / 60f);
+            int seconds = Mathf.RoundToInt(totalSeconds % 60f);
 
-        listaEnemigos.Add(Instantiate(Liana, new Vector3(5, 1f, 3f), Quaternion.identity));
-        listaEnemigos.Add(Instantiate(Liana, new Vector3(3, 1f, 3f), Quaternion.identity));
-        listaEnemigos.Add(Instantiate(Liana, new Vector3(1, 1f, 3f), Quaternion.identity));
-        StartCoroutine(ComenzarCronometro(30));
+            string formatedSeconds = seconds.ToString();
+
+            if (seconds == 60)
+            {
+                seconds = 0;
+                minutes += 1;
+            }
+
+            TextCronometro.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+        }
     }
 
-    public IEnumerator ComenzarCronometro(float valorCronometro = 30)
+    public void SetLoseText()
+        {
+            if (totalTime <= 0f)
+            {
+                TextLose.SetActive(true);
+                flag = false;
+            }
+        }
+
+    public void Punto()
     {
-        tiempoRestante = valorCronometro;
-        while (tiempoRestante > 0)
-        {
-            Debug.Log("Restan " + tiempoRestante + " segundos.");
-            yield return new WaitForSeconds(1.0f);
-            tiempoRestante--;
-        }
+        //count = count + 1;
+        count++;
+
+        SetCountText();
     }
+
+    public void SetCountText()
+    {
+        TextLiana.text = count.ToString();
+
+        if (count >= 10)
+        {
+            winTextObject.SetActive(true);
+            flag = false;
+        }
+    } 
 }
